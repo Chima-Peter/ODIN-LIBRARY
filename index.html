@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="headContainer">
+        <h3>myBookCollection</h3>
+        <input type="search" name="search" id="search" placeholder="Search by author, title, name">
+    </div>
+    <div class="midContainer">
+        <div class="addBook">
+            <h4>Build Your Library</h4>
+            <p>Add the books you've read or want to read.</p>
+            <button class="addBtn">Add Button</button>
+        </div>
+        <div class="imgContainer">
+           <!-- <img src="images/7788.jpg" alt="image of group of students reading"></-->
+        </div>
+    </div>
+    <div class="bookContainer">
+        <h3>Your Collections:</h3>
+        <div class="books">
+            <div class="one">
+                <!--<img src="images/GIU AMA 198-10.jpg" alt="book cover"></!-->
+                <div>
+                    <p>CHIMA OJIMMA PETER</p>
+                    <p>THE BEGINNING</p>
+                    <p>270 PAGES</p>
+                    <div>
+                        <button>READ?</button>
+                        <button>REMOVE</button>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="formContainer">
+        <form action="" method="post">
+            <label for="title">Book Title</label>
+            <input type="text" name="title" id="title">
+            <label for="author">Book Author</label>
+            <input type="text" name="author" id="author">
+            <label for="pages">Number of Book Pages</label>
+            <input type="number" name="pages" id="pages">
+            <fieldset>
+                <caption>Have you read the book ?</caption>
+                <input type="checkbox" name="true" id="true">
+                <label for="true">YES</label>
+                <input type="checkbox" name="false" id="false">
+                <label for="false">NO</label>   
+            </fieldset>
+            <div>
+                <button type="submit" id="formBtn">Add Book</button>
+                <button type="button" id="formCancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
