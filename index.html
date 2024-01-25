@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=div, initial-scale=1.0">
     <script src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="icon" href="images/bookshelf.png" sizes="64x64" type="image/png">
+    <title>YOUR PERSONAL LIBRARY</title>
 </head>
 <body>
     <div class="headContainer">
@@ -19,39 +20,29 @@
             <button class="addBtn">Add Button</button>
         </div>
         <div class="imgContainer">
-           <img src="images/7788.jpg" alt="image of group of students reading">
+            <img src="images/2079628.jpg" alt="student reading a book">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.freepik.com/free-vector/people-reading-collection_4003043.htm#query=reading%20books&position=10&from_view=search&track=ais&uuid=fd21e024-5d1a-4abf-95a1-891b37bdd0ce">Image by pikisuperstar on Freepik</a>
         </div>
     </div>
     <div class="bookContainer">
         <h3>Your Collections:</h3>
         <div class="books">
-            <div class="one">
-                <img src="images/GIU AMA 198-10.jpg" alt="book cover">
-                <div>
-                    <p>CHIMA OJIMMA PETER</p>
-                    <p>THE BEGINNING</p>
-                    <p>270 PAGES</p>
-                    <div>
-                        <button>READ?</button>
-                        <button>REMOVE</button>
-                    </div>
-                </div>    
-            </div>
+            
         </div>
     </div>
     <div class="formContainer">
-        <form action="" method="post">
-            <label for="title">Book Title</label>
-            <input type="text" name="title" id="title">
-            <label for="author">Book Author</label>
-            <input type="text" name="author" id="author">
-            <label for="pages">Number of Book Pages</label>
-            <input type="number" name="pages" id="pages">
+        <form action="" method="post" id="form">
+            <label for="title">Book Title:</label>
+            <input type="text" name="title" id="title" autofocus minlength="3" required>
+            <label for="author">Book Author:</label>
+            <input type="text" name="author" minlength="5" id="author" required>
+            <label for="pages">Number of Book Pages:</label>
+            <input type="number" name="pages" id="pages" required min="10">
             <fieldset>
                 <caption>Have you read the book ?</caption>
-                <input type="checkbox" name="true" id="true">
+                <input type="radio"  value="YES" required name="option" id="option" checked>
                 <label for="true">YES</label>
-                <input type="checkbox" name="false" id="false">
+                <input type="radio" value="NO" required name="option" id="option">
                 <label for="false">NO</label>   
             </fieldset>
             <div>
