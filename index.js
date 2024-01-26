@@ -4,13 +4,7 @@ const formContainer = document.querySelector('.formContainer');
 const formCancel = document.querySelector('#formCancel');
 const form = document.querySelector('#form');
 const bookContainer = document.querySelector('.books');
-const oneBook = document.createElement('div');
-const titleName = document.createElement('p');
-const authorName = document.createElement('p');
-const pagesNum = document.createElement('p');
-const btnContainer = document.createElement('div');
-const readBtn = document.createElement('button');
-const removeBtn = document.createElement('button');
+const editBtn = document.querySelector('.edit');
 let book = [];
 
 function Book(title, author, pages, read, id) {
@@ -22,11 +16,19 @@ function Book(title, author, pages, read, id) {
 }
 
 function bookConstructor(obj)  {
+    const oneBook = document.createElement('div');
+    const titleName = document.createElement('p');
+    const authorName = document.createElement('p');
+    const pagesNum = document.createElement('p');
+    const btnContainer = document.createElement('div');
+    const readBtn = document.createElement('button');
+    const removeBtn = document.createElement('button');
     titleName.textContent = 'BOOK TITLE: ' + obj.title.toUpperCase();
     authorName.textContent = 'BOOK AUTHOR: ' + obj.author.toUpperCase();
     pagesNum.textContent = 'This book has ' + obj.pages + 'pages';
-    removeBtn.textContent = 'REMOVE';
     removeBtn.value = obj.id;
+    removeBtn.textContent = 'Added new book';
+    removeBtn.classList.add('removeBtn');
     btnContainer.appendChild(removeBtn);
     if (obj.read === 'NO') {
         readBtn.textContent = 'READ THIS BOOK YET?';
@@ -34,6 +36,7 @@ function bookConstructor(obj)  {
         readBtn.style.borderColor = 'red'; 
         readBtn.style.color = 'white';
         readBtn.value = obj.id;
+        readBtn.classList.add('readBtn');
         btnContainer.appendChild(readBtn);
     } else {
         readBtn.remove();
@@ -75,17 +78,25 @@ form.addEventListener('submit', (e) => {
     bookConstructor(book[book.length - 1]);
 });
 
-readBtn.addEventListener('click', () =>  {
-    const index = Number(readBtn.value);
-    book[index].read = 'YES';
-    readBtn.remove();
+
+editBtn.addEventListener('click', () => {
+    const removeBtns = document.querySelectorAll('.removeBtn');
+    removeBtns.forEach((button) => {
+        button.textContent = 'REMOVE';
+        button.addEventListener('click', () => {
+            const index = button.value;
+            delete(book[index]);
+            book = book.filter((x) => x !== undefined)
+            button.parentElement.parentElement.remove();
+        });
+    });
+    const readBtns = document.querySelectorAll('.readBtn');
+    readBtns.forEach((button) => {
+        button.textContent = 'HAVE YOU READ IT NOW?';
+        button.addEventListener('click', () => {
+            const index = button.value;
+            book[index].read = 'YES';
+            button.remove();
+        });
+    });
 });
-
-removeBtn.addEventListener('click', () => {
-        const index = Number(removeBtn.value);
-        delete(book[index])
-        book = book.filter((x) => x !== undefined);
-        removeBtn.parentElement.parentElement.remove();
-});
-
-
