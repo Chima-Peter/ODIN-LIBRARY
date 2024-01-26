@@ -55,7 +55,7 @@ addBtn.addEventListener('click', () => {
     formContainer.classList.add('modal');
 })
 formCancel.addEventListener('click', () => {
-    body.style.padding = '30px 50px';
+    body.style.padding = '30px 20px';
     formContainer.classList.remove('modal');
     title.value = '';
     author.value = '';
@@ -73,7 +73,7 @@ form.addEventListener('submit', (e) => {
     author.value = '';
     pages.value = '';
     form.elements['option'].value = '';
-    body.style.padding = '30px 50px';
+    body.style.padding = '30px 20px';
     formContainer.classList.remove('modal');
     bookConstructor(book[book.length - 1]);
 });
