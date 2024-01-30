@@ -7,47 +7,51 @@ const bookContainer = document.querySelector('.books');
 const editBtn = document.querySelector('.edit');
 let book = [];
 
-function Book(title, author, pages, read, id) {
-    this.title = title;
-    this.author =  author;
-    this.read = read;
-    this.pages = pages;
-    this.id = id;
+class Book {
+    constructor (title, author, pages, read, id) {
+        this.title = title;
+        this.author = author
+        this.read = read;
+        this.pages = pages;
+        this.id = id;
+    }
+
+    bookConstructor = () =>  {
+        const oneBook = document.createElement('div');
+        const titleName = document.createElement('p');
+        const authorName = document.createElement('p');
+        const pagesNum = document.createElement('p');
+        const btnContainer = document.createElement('div');
+        const readBtn = document.createElement('button');
+        const removeBtn = document.createElement('button');
+        titleName.textContent = 'BOOK TITLE: ' + this.title.toUpperCase();
+        authorName.textContent = 'BOOK AUTHOR: ' + this.author.toUpperCase();
+        pagesNum.textContent = 'This book has ' + this.pages + 'pages';
+        removeBtn.value = this.id;
+        removeBtn.textContent = 'Added new book';
+        removeBtn.classList.add('removeBtn');
+        btnContainer.appendChild(removeBtn);
+        if (this.read === 'NO') {
+            readBtn.textContent = 'READ THIS BOOK YET?';
+            readBtn.style.backgroundColor = 'red';
+            readBtn.style.borderColor = 'red'; 
+            readBtn.style.color = 'white';
+            readBtn.value = this.id;
+            readBtn.classList.add('readBtn');
+            btnContainer.appendChild(readBtn);
+        } else {
+            readBtn.remove();
+        }
+        oneBook.appendChild(titleName);
+        oneBook.appendChild(authorName);
+        oneBook.appendChild(pagesNum);
+        oneBook.appendChild(btnContainer);
+        oneBook.classList.add('one');
+        bookContainer.appendChild(oneBook);
+    }
 }
 
-function bookConstructor(obj)  {
-    const oneBook = document.createElement('div');
-    const titleName = document.createElement('p');
-    const authorName = document.createElement('p');
-    const pagesNum = document.createElement('p');
-    const btnContainer = document.createElement('div');
-    const readBtn = document.createElement('button');
-    const removeBtn = document.createElement('button');
-    titleName.textContent = 'BOOK TITLE: ' + obj.title.toUpperCase();
-    authorName.textContent = 'BOOK AUTHOR: ' + obj.author.toUpperCase();
-    pagesNum.textContent = 'This book has ' + obj.pages + 'pages';
-    removeBtn.value = obj.id;
-    removeBtn.textContent = 'Added new book';
-    removeBtn.classList.add('removeBtn');
-    btnContainer.appendChild(removeBtn);
-    if (obj.read === 'NO') {
-        readBtn.textContent = 'READ THIS BOOK YET?';
-        readBtn.style.backgroundColor = 'red';
-        readBtn.style.borderColor = 'red'; 
-        readBtn.style.color = 'white';
-        readBtn.value = obj.id;
-        readBtn.classList.add('readBtn');
-        btnContainer.appendChild(readBtn);
-    } else {
-        readBtn.remove();
-    }
-    oneBook.appendChild(titleName);
-    oneBook.appendChild(authorName);
-    oneBook.appendChild(pagesNum);
-    oneBook.appendChild(btnContainer);
-    oneBook.classList.add('one');
-    bookContainer.appendChild(oneBook);
-}
+
 
 
 addBtn.addEventListener('click', () => {
@@ -68,14 +72,15 @@ form.addEventListener('submit', (e) => {
     let author = document.querySelector('#author');
     let pages = document.querySelector('#pages');
     let id = book.length;
-    book[book.length] = new Book(title.value, author.value, pages.value, form.elements['option'].value, id);
+    let newBook = new Book(title.value, author.value, pages.value, form.elements['option'].value, id);
+    book.push(newBook);
     title.value = '';
     author.value = '';
     pages.value = '';
     form.elements['option'].value = '';
     body.style.padding = '30px 20px';
     formContainer.classList.remove('modal');
-    bookConstructor(book[book.length - 1]);
+    newBook.bookConstructor();
 });
 
 
